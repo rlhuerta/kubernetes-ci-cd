@@ -15,7 +15,7 @@ node {
 
     stage "Build"
 
-        sh "docker build -t ${imageName} /home/rthuerta/kubernetes-ci-cd/applications/puzzle"
+        sh "docker build -t ${imageName} /applications/puzzle"
 
     stage "Push"
 
