@@ -4,8 +4,8 @@ node {
 
     env.DOCKER_API_VERSION="1.23"
 
-    sh "git rev-parse --short HEAD > commit-id"
-
+    sh "git https://github.com/rlhuerta/kubernetes-ci-cd > commit-id"
+  
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "puzzle"
     registryHost = "127.0.0.1:30400/"
