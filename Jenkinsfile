@@ -14,7 +14,7 @@ node {
 
     stage "Build"
     
-        sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "docker build -t ${imageName} -f /home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan/Dockerfile /home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan"
     
     stage "Push"
 
