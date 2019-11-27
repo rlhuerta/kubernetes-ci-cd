@@ -9,9 +9,9 @@ node {
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "puzzle"
     registryHost = "127.0.0.1:30400/"
-    imageName = "${registryHost}${appName}:${tag}"
+    imageName = "${registryHost}${appName}:latest"
     env.BUILDIMG=imageName
-    env.BUILD_TAG=tag
+    env.BUILD_TAG=latest
 
     stage "Build"
 
@@ -24,4 +24,3 @@ node {
     stage "Deploy"
 
         kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
-}
