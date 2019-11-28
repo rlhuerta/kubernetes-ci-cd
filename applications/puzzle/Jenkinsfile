@@ -15,11 +15,11 @@ node {
 
     stage "Build"
 
-        sh "docker build -t ${imageName} -f /home/rthuerta/kubernetes-ci-cd/applications/puzzle/Dockerfile /home/rthuerta/kubernetes-ci-cd/applications/puzzle/"
+        sh "docker build -t 127.0.0.1:30400/puzzle:latest -f /home/rthuerta/kubernetes-ci-cd/applications/puzzle/Dockerfile /home/rthuerta/kubernetes-ci-cd/applications/puzzle/"
 
     stage "Push"
 
-        sh "docker push ${imageName}"
+        sh "docker push 127.0.0.1:30400/puzzle:latest"
 
     stage "Deploy"
 
