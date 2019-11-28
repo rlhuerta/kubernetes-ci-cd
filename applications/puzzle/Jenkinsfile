@@ -1,23 +1,15 @@
-node {
-
-    checkout scm
-
-    env.DOCKER_API_VERSION="1.23"
-
-    sh "git rev-parse --short HEAD > commit-id"
-  
-    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-
-   
-  stage('Build') {
-
-        sh "docker build -t 127.0.0.1:30400/puzzle:latest -f /home/rthuerta/kubernetes-ci-cd/applications/puzzle/Dockerfile /home/rthuerta/kubernetes-ci-cd/applications/puzzle/"
+pipeline {
+    agent {
+        docker {
+            image '127.0.0.1:30400/puzzle:latest'
+            args '-v $HOME/.m2:/root/.m2'
+        }
     }
-    stage "Push"
-
-        sh "docker push 127.0.0.1:30400/puzzle:latest"
-
-    stage "Deploy"
-
-        kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
-  }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t 127.0.0.1:30400/puzzle:latest -f /home/rthuerta/kubernetes-ci-cd/applications/puzzle/Dockerfile /home/rthuerta/kubernetes-ci-cd/applications/puzzle/'
+            }
+        }
+    }
+}
