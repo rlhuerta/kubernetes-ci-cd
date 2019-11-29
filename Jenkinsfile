@@ -22,6 +22,6 @@ node {
 
     stage "Deploy"
 
-        kubernetesDeploy configs: "/home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan/k8s/manual-deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+        kubernetesDeploy configs: /home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan/k8s/manual-deployment.yaml, kubeconfigId: 'kenzan_kubeconfig'
 
 }
