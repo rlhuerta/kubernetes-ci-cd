@@ -25,7 +25,7 @@ node {
        
                    
            //Update the imagetag to the latest version
-                   sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
+                   sh("sed -i.bak '127.0.0.1:30400/hello-kenzan:latest' ./k8s/development/*.yaml")
                    //Create or update resources
            sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
                    sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
