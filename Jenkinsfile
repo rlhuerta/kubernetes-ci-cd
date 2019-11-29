@@ -22,11 +22,8 @@ node {
 
    
  stage('Deploy Application') {
-       switch (namespace) {
-              //Roll out to Dev Environment
-              case "development":
-                   // Create namespace if it doesn't exist
-                   sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
+       
+                   
            //Update the imagetag to the latest version
                    sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
                    //Create or update resources
@@ -36,5 +33,5 @@ node {
                    sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
                    break
 }
- }
+ 
 }
