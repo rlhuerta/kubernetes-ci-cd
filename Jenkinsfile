@@ -23,15 +23,7 @@ node {
    
  stage('Deploy Application') {
        
-                   
-           //Update the imagetag to the latest version
-                   sh("sed -i.bak '127.0.0.1:30400/hello-kenzan:latest' ./k8s/development/*.yaml")
-                   //Create or update resources
-           sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
-                   sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
-           //Grab the external Ip address of the service
-                   sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
-                   break
+     sh "kubectl apply -f /home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan/k8s/manual-deployment.yaml"
 }
  
 }
