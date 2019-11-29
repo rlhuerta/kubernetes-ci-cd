@@ -21,9 +21,9 @@ node {
         sh "docker push ${imageName}"
 
    
- stage('Deploy Application') {
+    stage "Deploy"
        
      sh "kubectl apply -f /home/rthuerta/kubernetes-ci-cd/applications/hello-kenzan/k8s/manual-deployment.yaml"
-}
+
  
 }
